@@ -1,0 +1,15 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  name: nfs
+mountOptions:
+  - vers=4
+  - minorversion=2
+  - noresvport
+parameters:
+  archiveOnDelete: "false"
+provisioner: nfs-nfs
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer

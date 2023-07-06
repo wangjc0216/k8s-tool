@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-pod
+spec:
+  containers:
+    - name: busybox-container
+      image: busybox
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - mountPath: /tmp
+          name: tmp-data
+          readOnly: true
+  volumes:
+    - name: tmp-data
+      persistentVolumeClaim:
+        claimName: busybox-pvc
